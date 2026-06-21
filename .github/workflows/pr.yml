@@ -1,0 +1,20 @@
+name: PR Request Demo
+
+on:
+    pull_request:
+        branches:
+            - main
+
+jobs:
+
+    validation:
+
+        runs-on: ubuntu-latest
+
+        steps:
+
+            - name: Checkout Code
+              uses: actions/checkout@v4
+            - name: PR request check
+              run: "echo PR request is trggered successfully"
+
