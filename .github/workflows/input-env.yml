@@ -1,0 +1,37 @@
+name: Deployment With Inputs
+
+on:
+
+  workflow_dispatch:
+
+    inputs:
+
+      environment:
+
+        description: "Select Environment"
+
+        required: true
+
+        type: choice
+
+        options:
+          - dev
+          - qa
+          - prod
+
+jobs:
+
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Print Selected Environment
+
+        run: |
+          echo "Selected Environment:"
+          echo "${{ github.event.inputs.environment }}"
