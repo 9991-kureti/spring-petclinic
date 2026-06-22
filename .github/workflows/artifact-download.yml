@@ -1,0 +1,45 @@
+name: Upload and Download Artifact Demo
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Create File
+
+        run: |
+          echo "Hello Krishna from Artifact" > demo.txt
+
+      - name: Upload Artifact
+
+        uses: actions/upload-artifact@v4
+
+        with:
+          name: demo-file
+          path: demo.txt
+
+  deploy:
+
+    needs: build
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Download Artifact
+
+        uses: actions/download-artifact@v4
+
+        with:
+          name: demo-file
+
+      - name: Display File
+
+        run: |
+          cat demo.txt
