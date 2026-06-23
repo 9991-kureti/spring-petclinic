@@ -1,0 +1,32 @@
+name: Package and Upload Artifact
+
+on:
+  workflow_dispatch
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Package Application
+        run: mvn clean package
+
+      - name: Upload JAR Artifact
+        uses: actions/upload-artifact@v4
+
+        with:
+          name: spring-petclinic-jar
+          path: target/*.jar
