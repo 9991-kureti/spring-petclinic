@@ -1,0 +1,35 @@
+name: Java Maven Build
+
+on:
+  workflow_dispatch
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+
+        uses: actions/setup-java@v4
+
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Verify Java
+
+        run: java -version
+
+      - name: Verify Maven
+
+        run: mvn -version
+
+      - name: Maven Compile
+
+        run: mvn clean compile
