@@ -1,0 +1,32 @@
+name: Matrix Demo
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  build:
+
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+
+      matrix:
+
+        os:
+          - ubuntu-latest
+          
+        java:
+          - 17
+          - 21
+
+    steps:
+
+      - name: Display Values
+
+        run: |
+          echo "Operating System:"
+          echo "${{ matrix.os }}"
+
+          echo "Java Version:"
+          echo "${{ matrix.java }}"
